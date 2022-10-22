@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { listReservations } from "../utils/api";
+import { useHistory, useRouteMatch } from "react-router-dom";
+import { listReservations, listTables } from "../utils/api";
+import useQuery from "../utils/useQuery";
+import { previous, next, today } from "../utils/date-time";
 import ErrorAlert from "../layout/ErrorAlert";
-
+import ListReservations from "../reservations/ListReservations";
+import ListTables from "../tables/ListTables";
 /**
  * Defines the dashboard page.
  * @param date
@@ -10,68 +14,89 @@ import ErrorAlert from "../layout/ErrorAlert";
  */
 function Dashboard({ date }) {
   const [reservations, setReservations] = useState([]);
-  const [reservationsError, setReservationsError] = useState(null);
+  const [tables, setTables] = useState([]);
+  const [resError, setResError] = useState(null);
+  const [dateState, setDateState] = useState(date);
 
-  useEffect(loadDashboard, [date]);
+  const history = useHistory();
+  const route = useRouteMatch();
+  const query = useQuery();
+
+  useEffect(loadDashboard, [dateState]);
 
   function loadDashboard() {
     const abortController = new AbortController();
-    setReservationsError(null);
-    listReservations({ date }, abortController.signal)
+    setResError(null);
+    listReservations({ date: dateState }, abortController.signal)
       .then(setReservations)
-      .catch(setReservationsError);
+      .catch(setResError);
     return () => abortController.abort();
   }
 
-  const rows = reservations.map(
-    (
-      {
-        first_name,
-        last_name,
-        mobile_number,
-        reservation_date,
-        reservation_time,
-        people,
-      },
-      index
-    ) => (
-      <tr key={index}>
-        <td>
-          {first_name} {last_name}
-        </td>
-        <td>{people}</td>
-        <td>{mobile_number}</td>
-        <td>{reservation_time}</td>
-      </tr>
-    )
-  );
+  useEffect(() => {
+    const abortController = new AbortController();
+    setResError(null);
+    listTables(abortController.signal).then(setTables).catch(setResError);
+    return () => abortController.abort();
+  }, []);
+
+  useEffect(() => {
+    function getDate() {
+      const queryDate = query.get("date");
+      if (queryDate) {
+        setDateState(queryDate);
+      } else {
+        setDateState(today());
+      }
+    }
+    getDate();
+  }, [query, route]);
 
   return (
     <main>
-      <h1>Dashboard</h1>
-      <div className="d-md-flex mb-3">
-        <h4 className="mb-0">Reservations for {date}</h4>
+      <div>
+        <h1>Dashboard</h1>
         <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Party</th>
-                <th>Phone</th>
-                <th>Time</th>
-              </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-          </table>
+          <button
+            onClick={() => {
+              history.push(`/dashboard?date=${previous(date)}`);
+              setDateState(previous(date));
+            }}
+          >
+            Previous
+          </button>
+          <button
+            onClick={() => {
+              history.push(`/dashboard?date=${next(date)}`);
+              setDateState(next(date));
+            }}
+          >
+            Next
+          </button>
+          <button
+            onClick={() => {
+              history.push(`/dashboard?date=${today()}`);
+              setDateState(today());
+            }}
+          >
+            Today
+          </button>
         </div>
         <div>
-          <button onClick={() => alert("Previous")}>Previous</button>
-          <button onClick={() => alert("Next")}>Next</button>
-          <button onClick={() => alert("Today")}>Today</button>
+          <h4 className="mb-0">Reservations for {dateState}</h4>
+          <ErrorAlert error={resError} />
+          <div className="d-md-flex mb-3">
+            <ListReservations
+              reservations={reservations}
+              // changeDateHandler={changeDateHandler}
+            />
+          </div>
+        </div>
+        <div>
+          <h4>Tables</h4>
+          <ListTables tables={tables} />
         </div>
       </div>
-      <ErrorAlert error={reservationsError} />
-      {/* {JSON.stringify(reservations)} */}
     </main>
   );
 }
