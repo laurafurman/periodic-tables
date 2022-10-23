@@ -13,7 +13,7 @@ function TableForm({ handleChange, handleSubmit, formData }) {
             type="text"
             id="table_name"
             name="table_name"
-            class="form-control"
+            className="form-control"
             onChange={handleChange}
             value={formData.table_name}
           />
@@ -24,7 +24,7 @@ function TableForm({ handleChange, handleSubmit, formData }) {
             type="text"
             id="capacity"
             name="capacity"
-            class="form-control"
+            className="form-control"
             onChange={handleChange}
             value={formData.capacity}
           />

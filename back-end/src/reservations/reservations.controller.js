@@ -106,25 +106,26 @@ function timeIsFuture(req, res, next) {
   const resDate = req.body.data.reservation_date;
   let resTime = req.body.data.reservation_time;
   const today = new Date();
-  const todayDate = today.toJSON().slice(0, 10);
-  const todayTime = today.toJSON().slice(11, 19);
+  const resRequest = `${resDate} ${resTime}`;
+  // const todayDate = today.toJSON().slice(0, 10);
+  // const todayTime = today.toJSON().slice(11, 16);
   // toTest = toTest.replace(/:/g, "");
-  if (resDate === todayDate) {
-    if (resTime > todayTime) {
-      next();
-    } else {
-      next({
-        status: 400,
-        message: `Reservation must be in the future.`,
-      });
-    }
+  // if (resDate === todayDate) {
+  if (today > resRequest) {
+    next({
+      status: 400,
+      message: `Reservation must be in the future.`,
+    });
+  } else {
+    next();
   }
+  // }
 }
 
 function dateIsNotTuesday(req, res, next) {
-  let reservationDate = req.body.data.reservation_date;
-  let date = new Date(reservationDate);
-  let toTest = date.getDay();
+  const reservationDate = req.body.data.reservation_date;
+  const date = new Date(reservationDate);
+  const toTest = date.getDay();
   if (toTest === 1) {
     next({
       status: 400,
@@ -138,7 +139,7 @@ function timeIsOpen(req, res, next) {
   const data = req.body.data;
   let toTest = data.reservation_time;
   // toTest = toTest.replace(/:/g, "");
-  if (toTest >= "10:30:00" && toTest <= "21:30:00") {
+  if (toTest >= "10:30" && toTest <= "21:30") {
     next();
   } else {
     next({
@@ -149,14 +150,15 @@ function timeIsOpen(req, res, next) {
 }
 
 async function reservationExists(req, res, next) {
-  const reservation = await service.read(req.params.reservationId);
+  const { reservation_id } = req.params;
+  const reservation = await service.read(reservation_id);
   if (reservation) {
     res.locals.reservation = reservation;
     return next();
   }
   next({
     status: 404,
-    message: `Reservation ${req.params.reservationId} cannot be found.`,
+    message: `Reservation ${reservation_id} cannot be found.`,
   });
 }
 
@@ -207,13 +209,13 @@ module.exports = {
     timeIsValid,
     peopleIsValid,
     dateIsNotPast,
+    dateIsNotTuesday,
     timeIsFuture,
     timeIsOpen,
-    dateIsNotTuesday,
     statusBooked,
     asyncErrorBoundary(create),
   ],
-  reservationExists: [asyncErrorBoundary(reservationExists)],
+  // reservationExists: [asyncErrorBoundary(reservationExists)],
   updateStatus: [
     asyncErrorBoundary(reservationExists),
     statusIsValid,

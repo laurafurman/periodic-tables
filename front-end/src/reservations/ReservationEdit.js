@@ -43,11 +43,14 @@ function ReservationEdit() {
     return () => abortController.abort();
   }
 
+  // let reservationDate = reservation.reservation_date;
+  // reservationDate = reservationDate.splice(0, 10);
+
   return (
     <div>
       <h1>Edit Reservation</h1>
       <ErrorAlert error={resError} />
-      <h1>{reservation.first_name}</h1>
+      <h1>{reservation.reservation_date}</h1>
       <ReservationForm
         handleSubmit={handleSubmit}
         handleChange={handleChange}

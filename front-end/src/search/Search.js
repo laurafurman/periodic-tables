@@ -15,7 +15,7 @@ function Search() {
   }
 
   async function handleSubmit(event) {
-    event.preventDefualt();
+    event.preventDefault();
     const abortController = new AbortController();
     setErr(null);
     try {
@@ -41,7 +41,7 @@ function Search() {
               id="mobile_number"
               name="mobile_number"
               placeholder="Enter a Customer's Phone Number"
-              class="form-control"
+              className="form-control"
               onChange={handleChange}
               value={formData.mobile_number}
               required
@@ -51,7 +51,7 @@ function Search() {
         </form>
       </div>
       <div>
-        {reservations.length ? (
+        {reservations.length > 0 ? (
           <div>
             <h3>Search Results</h3>
             <ListReservations reservations={reservations} />

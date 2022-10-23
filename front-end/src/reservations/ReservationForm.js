@@ -13,9 +13,9 @@ function ReservationForm({ handleChange, handleSubmit, formData }) {
             type="text"
             id="first_name"
             name="first_name"
-            class="form-control"
+            className="form-control"
             onChange={handleChange}
-            value={formData.first_name}
+            value={formData.first_name || ""}
           />
         </label>
         <label htmlFor="last_name">
@@ -24,9 +24,9 @@ function ReservationForm({ handleChange, handleSubmit, formData }) {
             type="text"
             id="last_name"
             name="last_name"
-            class="form-control"
+            className="form-control"
             onChange={handleChange}
-            value={formData.last_name}
+            value={formData.last_name || ""}
           />
         </label>
         <label htmlFor="mobile_number">
@@ -35,20 +35,20 @@ function ReservationForm({ handleChange, handleSubmit, formData }) {
             type="text"
             id="mobile_number"
             name="mobile_number"
-            class="form-control"
+            className="form-control"
             onChange={handleChange}
-            value={formData.mobile_number}
+            value={formData.mobile_number || ""}
           />
         </label>
         <label htmlFor="reservation_date">
           Date:
           <input
-            type="date"
+            type="text"
             id="reservation_date"
             name="reservation_date"
-            class="form-control"
+            className="form-control"
             onChange={handleChange}
-            value={formData.reservation_date}
+            value={formData.reservation_date || ""}
           />
         </label>
         <label htmlFor="reservation_time">
@@ -57,9 +57,9 @@ function ReservationForm({ handleChange, handleSubmit, formData }) {
             type="time"
             id="reservation_time"
             name="reservation_time"
-            class="form-control"
+            className="form-control"
             onChange={handleChange}
-            value={formData.reservation_time}
+            value={formData.reservation_time || ""}
           />
         </label>
         <label htmlFor="people">
@@ -68,9 +68,9 @@ function ReservationForm({ handleChange, handleSubmit, formData }) {
             type="text"
             id="people"
             name="people"
-            class="form-control"
+            className="form-control"
             onChange={handleChange}
-            value={formData.people}
+            value={formData.people || ""}
           />
         </label>
         <div>

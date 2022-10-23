@@ -4,6 +4,7 @@ import ReservationCancel from "./ReservationCancel";
 function ListReservations({ reservations }) {
   const rows = reservations.map(
     (
+      // reservation
       {
         reservation_id,
         first_name,
@@ -16,7 +17,7 @@ function ListReservations({ reservations }) {
       },
       index
     ) => (
-      <tr key={index}>
+      <tr key={reservation_id}>
         <td>
           {first_name} {last_name}
         </td>

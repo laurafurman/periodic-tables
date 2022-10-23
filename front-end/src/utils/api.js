@@ -64,6 +64,7 @@ export async function listReservations(params, signal) {
     url.searchParams.append(key, value.toString())
   );
   return await fetchJson(url, { headers, signal }, [])
+    .then(console.log(url))
     .then(formatReservationDate)
     .then(formatReservationTime);
 }

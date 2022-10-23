@@ -11,15 +11,15 @@ function ListTables({ tables }) {
               <div className="card">
                 <div className="card-body">
                   <h5 className="card-title">{table.table_name}</h5>
-                  <p className="card-text">
+                  <h6 className="card-text">
                     Table Size: {table.capacity}
                     <br />
                     {table.reservation_id ? (
                       <FinishTable table={table} />
                     ) : (
-                      <h6 data-table-id-status={table.table_id}>Free</h6>
+                      <p data-table-id-status={table.table_id}>Free</p>
                     )}
-                  </p>
+                  </h6>
                 </div>
               </div>
             </div>

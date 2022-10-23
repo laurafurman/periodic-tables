@@ -26,7 +26,7 @@ describe("US-02 - Create reservations future date", () => {
         last_name: "last",
         mobile_number: "800-555-1212",
         reservation_date: "1999-01-01",
-        reservation_time: "17:30:00",
+        reservation_time: "17:30",
         people: 3,
       };
 
@@ -44,7 +44,7 @@ describe("US-02 - Create reservations future date", () => {
         last_name: "last",
         mobile_number: "800-555-1212",
         reservation_date: "2030-01-01",
-        reservation_time: "17:30:00",
+        reservation_time: "17:30",
         people: 3,
       };
 

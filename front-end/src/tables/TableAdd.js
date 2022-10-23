@@ -7,7 +7,7 @@ import TableForm from "./TableForm";
 function TableAdd() {
   const initialFormState = {
     table_name: "",
-    capacity: 0,
+    capacity: "",
   };
 
   const [formData, setFormData] = useState({ ...initialFormState });
@@ -20,7 +20,7 @@ function TableAdd() {
   }
 
   async function handleSubmit(event) {
-    event.preventDefualt();
+    event.preventDefault();
     const abortController = new AbortController();
     setErr(null);
     formData.capacity = Number(formData.capacity);

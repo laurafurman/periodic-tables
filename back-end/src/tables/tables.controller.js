@@ -111,7 +111,7 @@ function tableIsUnoccupied(req, res, next) {
   if (!reservation_id) {
     next({
       status: 400,
-      message: `This table is not currently occupied.`,
+      message: `This table is not occupied.`,
     });
   }
   next();
