@@ -1,6 +1,9 @@
 import React from "react";
 import ReservationCancel from "./ReservationCancel";
 
+/**
+ * Renders list of individual reservation cards or alert with error
+ */
 function ListReservations({ reservations }) {
   const rows = reservations.map(
     (

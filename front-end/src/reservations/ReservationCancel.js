@@ -23,6 +23,9 @@ function ReservationCancel({ reservation_id }) {
     return () => abortController.abort();
   }
 
+  /**
+   * Renders cancel button and alert window to confirm cancellation
+   */
   return (
     <>
       <ErrorAlert error={err} />

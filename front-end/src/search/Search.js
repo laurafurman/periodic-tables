@@ -28,6 +28,10 @@ function Search() {
     return () => abortController.abort();
   }
 
+  /**
+   * Renders search form and any found reservations
+   */
+
   return (
     <main>
       <div className="m-3">

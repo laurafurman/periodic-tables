@@ -30,6 +30,10 @@ function FinishTable({ table }) {
     }
   }
 
+  /**
+   * Renders finish button and updates status from "Free" to "Occupied"
+   */
+
   return (
     <div className="row">
       <div className="col">

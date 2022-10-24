@@ -43,6 +43,10 @@ function SeatReservation() {
     return () => abortController.abort();
   }
 
+  /**
+   * Renders seat form allowing user to select table from inventory
+   */
+
   return (
     <div className="m-3">
       <h2 className="my-3">Seat Reservation</h2>

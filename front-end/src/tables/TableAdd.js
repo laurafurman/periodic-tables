@@ -33,6 +33,10 @@ function TableAdd() {
     return () => abortController.abort();
   }
 
+  /**
+   * Renders table form allowing user to add a table to database
+   */
+
   return (
     <div className="m-3">
       <h2 className="m-2">Add New Table</h2>

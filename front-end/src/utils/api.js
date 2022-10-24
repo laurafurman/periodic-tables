@@ -64,11 +64,11 @@ export async function listReservations(params, signal) {
     url.searchParams.append(key, value.toString())
   );
   return await fetchJson(url, { headers, signal }, [])
-    .then(console.log(url))
     .then(formatReservationDate)
     .then(formatReservationTime);
 }
 
+// creates new reservation
 export async function createReservation(reservation, signal) {
   const url = new URL(`${API_BASE_URL}/reservations`);
   reservation.people = +reservation.people;
@@ -81,11 +81,13 @@ export async function createReservation(reservation, signal) {
   return await fetchJson(url, options, reservation);
 }
 
+// reads existing reservation by ID
 export async function readReservation(reservation_id, signal) {
   const url = `${API_BASE_URL}/reservations/${reservation_id}`;
   return await fetchJson(url, { headers, signal }, []);
 }
 
+// updates existing reservation by ID
 export async function updateReservation(reservation, signal) {
   const url = `${API_BASE_URL}/reservations/${reservation.reservation_id}`;
   const options = {
@@ -97,6 +99,7 @@ export async function updateReservation(reservation, signal) {
   return await fetchJson(url, options, {});
 }
 
+// cancels exisitng reservation by ID
 export async function cancelReservation(reservation_id, signal) {
   const url = `${API_BASE_URL}/reservations/${reservation_id}/status`;
   const options = {
@@ -108,11 +111,13 @@ export async function cancelReservation(reservation_id, signal) {
   return await fetchJson(url, options, {});
 }
 
+// retrieves all tables
 export async function listTables(signal) {
   const url = new URL(`${API_BASE_URL}/tables`);
   return await fetchJson(url, { headers, signal }, []);
 }
 
+// creates new table
 export async function createTable(table, signal) {
   const url = new URL(`${API_BASE_URL}/tables`);
   const options = {
@@ -124,6 +129,7 @@ export async function createTable(table, signal) {
   return await fetchJson(url, options, table);
 }
 
+// seats existing table by ID >> updates reservation_id within tables table
 export async function seatTable(table_id, reservation_id, signal) {
   const url = new URL(`${API_BASE_URL}/tables/${table_id}/seat`);
   const options = {
@@ -135,6 +141,7 @@ export async function seatTable(table_id, reservation_id, signal) {
   return await fetchJson(url, options, {});
 }
 
+// finishes exisitng table by ID >> deletes reservation
 export async function finishTable(table_id, reservation_id, signal) {
   const url = new URL(`${API_BASE_URL}/tables/${table_id}/seat`);
   const options = {

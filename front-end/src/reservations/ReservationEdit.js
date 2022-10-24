@@ -43,8 +43,9 @@ function ReservationEdit() {
     return () => abortController.abort();
   }
 
-  // let reservationDate = reservation.reservation_date;
-  // reservationDate = reservationDate.splice(0, 10);
+  /**
+   * Renders reservation form with pre-filled reservation details from reservation_id
+   */
 
   return (
     <div className="m-3">

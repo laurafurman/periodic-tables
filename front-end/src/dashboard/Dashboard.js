@@ -53,6 +53,10 @@ function Dashboard({ date }) {
     getDate();
   }, [query, route]);
 
+  /**
+   * Renders dashboard including date navigation, reservations for date, and tables
+   */
+
   return (
     <main>
       <div>

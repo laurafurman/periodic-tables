@@ -1,6 +1,10 @@
 import React from "react";
 import FinishTable from "./FinishTable";
 
+/**
+ * Renders list of individual table cards
+ */
+
 function ListTables({ tables }) {
   if (tables.length > 0) {
     return (

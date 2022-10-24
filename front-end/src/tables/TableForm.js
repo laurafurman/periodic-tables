@@ -1,6 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 
+/**
+ * Renders table form allowing user to add table to database (reusable if necessary)
+ */
+
 function TableForm({ handleChange, handleSubmit, formData }) {
   const history = useHistory();
 

@@ -42,6 +42,10 @@ function ReservationAdd() {
     return () => abortController.abort();
   }
 
+  /**
+   * Renders empty reservation form
+   */
+
   return (
     <div className="m-3">
       <h2 className="m-2">New Reservation</h2>

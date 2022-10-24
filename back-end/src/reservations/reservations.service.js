@@ -31,6 +31,7 @@ function update(updatedReservation) {
     .then((updatedRecords) => updatedRecords[0]);
 }
 
+// Search and return reservations by mobile number
 function search(mobile_number) {
   return knex("reservations")
     .whereRaw(

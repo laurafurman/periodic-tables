@@ -3,6 +3,7 @@ const reservationsService = require("../reservations/reservations.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const hasProperties = require("../errors/hasProperties");
 
+// CRUDL FUNCTIONS
 async function list(req, res) {
   const data = await tablesService.list();
   res.json({ data });
@@ -32,6 +33,8 @@ async function finish(req, res, next) {
   const data = await tablesService.finish(table);
   res.json({ data });
 }
+
+// VALIDATIONS
 
 async function tableExists(req, res, next) {
   const { table_id } = req.params;
@@ -83,6 +86,7 @@ async function reservationExists(req, res, next) {
   });
 }
 
+// Capacity of table is enough to accomodate party size
 function capacityIsSufficient(req, res, next) {
   const { people } = res.locals.reservation;
   const { capacity } = res.locals.table;
