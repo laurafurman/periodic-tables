@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useHistory } from "react-router-dom";
 
 /**
@@ -7,6 +8,7 @@ import { useHistory } from "react-router-dom";
 
 function ReservationForm({ handleChange, handleSubmit, formData }) {
   const history = useHistory();
+  const date = moment(formData.reservation_date).format("yyyy-MM-DD");
 
   return (
     <div className="container">
@@ -58,12 +60,12 @@ function ReservationForm({ handleChange, handleSubmit, formData }) {
             <label htmlFor="reservation_date">
               Date
               <input
-                type="text"
+                type="date"
                 id="reservation_date"
                 name="reservation_date"
                 className="form-control"
                 onChange={handleChange}
-                value={formData.reservation_date || ""}
+                value={date || ""}
               />
             </label>
           </div>
@@ -71,7 +73,7 @@ function ReservationForm({ handleChange, handleSubmit, formData }) {
             <label htmlFor="reservation_time">
               Time
               <input
-                type="text"
+                type="time"
                 id="reservation_time"
                 name="reservation_time"
                 className="form-control"
