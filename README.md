@@ -18,23 +18,23 @@ The API allows for creation, reading, and updating reservations and tables. A us
 ## User Experience
 
 ### Dashboard
-![dashboard](/images/dashboard.png)
+![dashboard](/images/Dashboard.png)
 
 ### Add a New Reservation
-![new reservation](/images/newreservation.png)
+![new reservation](/images/NewReservation.png)
 
 ### Edit an Exisiting Reservation
-![edit reservation](/images/editreservation.png)
+![edit reservation](/images/EditReservation.png)
 
 ### Seat a Reservation
-![seat select](/images/seatselect.png)
-![dashboard seated](/images/dashboardseated.png)
+![seat select](/images/SeatSelect.png)
+![dashboard seated](/images/DashboardSeated.png)
 
 ### Search for an Exisiting Reservation
-![search reservations](/images/searchreservations.png)
+![search reservations](/images/SearchReservations.png)
 
 ### Add a New Table
-![add table](/images/addtable.png)
+![add table](/images/AddTable.png)
 
 ## Tech Used
 
