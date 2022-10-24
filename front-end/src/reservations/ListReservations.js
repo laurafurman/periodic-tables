@@ -6,20 +6,17 @@ import ReservationCancel from "./ReservationCancel";
  */
 function ListReservations({ reservations }) {
   const rows = reservations.map(
-    (
-      {
-        reservation_id,
-        first_name,
-        last_name,
-        mobile_number,
-        reservation_date,
-        reservation_time,
-        people,
-        status,
-      },
-      index
-    ) => (
-      <div className="card my-2" key={index}>
+    ({
+      reservation_id,
+      first_name,
+      last_name,
+      mobile_number,
+      reservation_date,
+      reservation_time,
+      people,
+      status,
+    }) => (
+      <div className="card my-2" key={reservation_id}>
         <div className="card-header">
           <h5>
             {first_name} {last_name}: Party of {people}
