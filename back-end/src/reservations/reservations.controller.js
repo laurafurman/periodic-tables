@@ -57,7 +57,7 @@ const regexDate =
 const regexTime = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
 
 function dateIsValid(req, res, next) {
-  const toTest = req.body.data.reservation_date;
+  const toTest = req.body.data.reservation_date.slice(0, 10);
   if (!regexDate.test(toTest)) {
     next({
       status: 400,
@@ -175,7 +175,7 @@ function statusBooked(req, res, next) {
 
 function statusNotFinished(req, res, next) {
   const { status } = res.locals.reservation;
-  if (status !== "booked" && status !== "seated") {
+  if (status === "finished") {
     next({
       status: 400,
       message: `Cannot update reservation that is finished.`,

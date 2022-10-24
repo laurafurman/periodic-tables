@@ -30,35 +30,44 @@ function Search() {
 
   return (
     <main>
-      <h1>Search Reservations</h1>
-      <ErrorAlert error={err} />
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="mobile_number">Mobile Number:</label>
-            <input
-              type="text"
-              id="mobile_number"
-              name="mobile_number"
-              placeholder="Enter a Customer's Phone Number"
-              className="form-control"
-              onChange={handleChange}
-              value={formData.mobile_number}
-              required
-            />
-          </div>
-          <button type="submit">Find</button>
-        </form>
-      </div>
-      <div>
-        {reservations.length > 0 ? (
-          <div>
-            <h3>Search Results</h3>
-            <ListReservations reservations={reservations} />
-          </div>
-        ) : (
-          <p>No reservations found</p>
-        )}
+      <div className="m-3">
+        <h2 className="my-3">Search Reservations</h2>
+        <ErrorAlert error={err} />
+        <div className="container ">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group row">
+              {/* <label className="col-2  col-form-label " htmlFor="mobile_number">
+                Mobile Number
+              </label> */}
+              <div className="col-9">
+                <input
+                  type="text"
+                  id="mobile_number"
+                  name="mobile_number"
+                  placeholder="Enter a Customer's Phone Number"
+                  className="form-control"
+                  onChange={handleChange}
+                  value={formData.mobile_number}
+                  required
+                />
+              </div>
+              <button className="col-2 btn btn-primary mx-1" type="submit">
+                Find
+              </button>
+            </div>
+          </form>
+        </div>
+        <div>
+          {reservations.length > 0 ? (
+            <div className=" mx-2 my-3">
+              <ListReservations reservations={reservations} />
+            </div>
+          ) : (
+            <p className="alert alert-secondary my-4 mx-2">
+              No reservations found
+            </p>
+          )}
+        </div>
       </div>
     </main>
   );

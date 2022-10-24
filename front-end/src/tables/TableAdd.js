@@ -34,8 +34,8 @@ function TableAdd() {
   }
 
   return (
-    <div>
-      <h1>Add New Table</h1>
+    <div className="m-3">
+      <h2 className="m-2">Add New Table</h2>
       <ErrorAlert error={err} />
       <TableForm
         handleChange={handleChange}

@@ -44,31 +44,45 @@ function SeatReservation() {
   }
 
   return (
-    <div>
-      <h2>Seat Reservation</h2>
+    <div className="m-3">
+      <h2 className="my-3">Seat Reservation</h2>
       <ErrorAlert error={tableError} />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="table_id">
-          Select Table:
-          <select
-            id="table_id"
-            name="table_id"
-            onChange={handleChange}
-            value={formData.table_id}
-          >
-            <option value="">-- Choose a table to seat --</option>
-            {tables.map((table) => (
-              <option key={table.table_id} value={table.table_id}>
-                {table.table_name}: Capacity {table.capacity}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button type="submit">Seat</button>
-        <button type="button" onClick={() => history.goBack()}>
-          Cancel
-        </button>
-      </form>
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className=" " htmlFor="table_id">
+              Select Table
+            </label>
+            {/* <div className="col"> */}
+            <select
+              id="table_id"
+              name="table_id"
+              className=" my-1 form-control"
+              onChange={handleChange}
+              value={formData.table_id}
+            >
+              <option value="">-- Choose a table to seat --</option>
+              {tables.map((table) => (
+                <option key={table.table_id} value={table.table_id}>
+                  {table.table_name} - {table.capacity}
+                </option>
+              ))}
+            </select>
+            <div className="  ">
+              <button className="btn btn-success my-2" type="submit">
+                Seat
+              </button>
+              <button
+                className="btn btn-secondary mx-2"
+                type="button"
+                onClick={() => history.goBack()}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

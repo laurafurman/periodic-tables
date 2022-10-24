@@ -36,7 +36,7 @@ function ReservationEdit() {
         reservation,
         abortController.signal
       );
-      history.push(`/dashboard?date=${response.reservation_date}`);
+      history.push(`/dashboard?date=${response.reservation_date.slice(0, 10)}`);
     } catch (error) {
       setResError(error);
     }
@@ -47,10 +47,9 @@ function ReservationEdit() {
   // reservationDate = reservationDate.splice(0, 10);
 
   return (
-    <div>
-      <h1>Edit Reservation</h1>
+    <div className="m-3">
+      <h2 className="m-2">Edit Reservation</h2>
       <ErrorAlert error={resError} />
-      <h1>{reservation.reservation_date}</h1>
       <ReservationForm
         handleSubmit={handleSubmit}
         handleChange={handleChange}

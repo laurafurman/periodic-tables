@@ -31,16 +31,23 @@ function FinishTable({ table }) {
   }
 
   return (
-    <div>
-      <p data-table-id-status={table.table_id}>Occupied</p>
+    <div className="row">
+      <div className="col">
+        <p className="text-danger" data-table-id-status={table.table_id}>
+          Occupied
+        </p>
+      </div>
       <ErrorAlert error={err} />
-      <button
-        type="button"
-        data-table-id-finish={table.table_id}
-        onClick={handleClick}
-      >
-        Finish
-      </button>
+      <div className="col">
+        <button
+          type="button"
+          className="btn btn-secondary btn-sm"
+          data-table-id-finish={table.table_id}
+          onClick={handleClick}
+        >
+          Finish
+        </button>
+      </div>
     </div>
   );
 }

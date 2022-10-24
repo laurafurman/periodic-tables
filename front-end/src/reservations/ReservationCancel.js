@@ -10,7 +10,7 @@ function ReservationCancel({ reservation_id }) {
     let abortController = new AbortController();
     setErr(null);
     let confirmCancel = window.confirm(
-      "Are you sure you want to cancel this reservation? This cannot be undone."
+      "Do you want to cancel this reservation? This cannot be undone."
     );
     if (confirmCancel) {
       try {
@@ -24,16 +24,17 @@ function ReservationCancel({ reservation_id }) {
   }
 
   return (
-    <div>
+    <>
       <ErrorAlert error={err} />
       <button
         type="button"
+        className="btn btn-danger btn-sm mx-2"
         onClick={handleCancel}
         data-reservation-id-cancel={reservation_id}
       >
         Cancel
       </button>
-    </div>
+    </>
   );
 }
 

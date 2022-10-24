@@ -6,6 +6,7 @@ import { previous, next, today } from "../utils/date-time";
 import ErrorAlert from "../layout/ErrorAlert";
 import ListReservations from "../reservations/ListReservations";
 import ListTables from "../tables/ListTables";
+
 /**
  * Defines the dashboard page.
  * @param date
@@ -55,25 +56,18 @@ function Dashboard({ date }) {
   return (
     <main>
       <div>
-        <h1>Dashboard</h1>
-        <div>
+        <div className="mt-3 mx-2">
           <button
+            className="btn btn-secondary mx-1"
             onClick={() => {
-              history.push(`/dashboard?date=${previous(date)}`);
+              history.push(`/dashboard?date=${previous(dateState)}`);
               setDateState(previous(date));
             }}
           >
             Previous
           </button>
           <button
-            onClick={() => {
-              history.push(`/dashboard?date=${next(date)}`);
-              setDateState(next(date));
-            }}
-          >
-            Next
-          </button>
-          <button
+            className="btn btn-primary mx-1"
             onClick={() => {
               history.push(`/dashboard?date=${today()}`);
               setDateState(today());
@@ -81,20 +75,30 @@ function Dashboard({ date }) {
           >
             Today
           </button>
+          <button
+            className="btn btn-secondary mx-1"
+            onClick={() => {
+              history.push(`/dashboard?date=${next(dateState)}`);
+              setDateState(next(date));
+            }}
+          >
+            Next
+          </button>
         </div>
-        <div>
-          <h4 className="mb-0">Reservations for {dateState}</h4>
-          <ErrorAlert error={resError} />
-          <div className="d-md-flex mb-3">
-            <ListReservations
-              reservations={reservations}
-              // changeDateHandler={changeDateHandler}
-            />
+        <div className="container">
+          <div className="row">
+            <div className="col mt-3">
+              <h4>Reservations for {dateState.slice(0, 10)}</h4>
+              <ErrorAlert error={resError} />
+              <div>
+                <ListReservations reservations={reservations} />
+              </div>
+            </div>
+            <div className="col mt-3">
+              <h4>Tables</h4>
+              <ListTables tables={tables} />
+            </div>
           </div>
-        </div>
-        <div>
-          <h4>Tables</h4>
-          <ListTables tables={tables} />
         </div>
       </div>
     </main>

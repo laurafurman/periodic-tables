@@ -11,7 +11,7 @@ function ReservationAdd() {
     mobile_number: "",
     reservation_date: "",
     reservation_time: "",
-    people: "",
+    people: 0,
   };
 
   const [formData, setFormData] = useState({ ...initialFormState });
@@ -35,7 +35,7 @@ function ReservationAdd() {
         formData,
         abortController.signal
       );
-      history.push(`/dashboard?date=${response.reservation_date}`);
+      history.push(`/dashboard?date=${response.reservation_date.slice(0, 10)}`);
     } catch (error) {
       setResError(error);
     }
@@ -43,8 +43,8 @@ function ReservationAdd() {
   }
 
   return (
-    <div>
-      <h1>New Reservation</h1>
+    <div className="m-3">
+      <h2 className="m-2">New Reservation</h2>
       <ErrorAlert error={resError} />
       <ReservationForm
         handleSubmit={handleSubmit}
