@@ -126,7 +126,7 @@ function dateIsNotTuesday(req, res, next) {
   const reservationDate = req.body.data.reservation_date.slice(0, 10);
   const date = new Date(reservationDate);
   const toTest = date.getDay();
-  if (toTest === 1) {
+  if (toTest === 2) {
     next({
       status: 400,
       message: `We're closed on Tuesday. Please choose a different day.`,
