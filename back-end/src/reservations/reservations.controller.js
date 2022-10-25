@@ -123,7 +123,7 @@ function timeIsFuture(req, res, next) {
 }
 
 function dateIsNotTuesday(req, res, next) {
-  const reservationDate = req.body.data.reservation_date;
+  const reservationDate = req.body.data.reservation_date.slice(0, 10);
   const date = new Date(reservationDate);
   const toTest = date.getDay();
   if (toTest === 1) {
