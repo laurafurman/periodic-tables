@@ -123,9 +123,13 @@ function timeIsFuture(req, res, next) {
 }
 
 function dateIsNotTuesday(req, res, next) {
-  const reservationDate = req.body.data.reservation_date.slice(0, 10);
-  const date = new Date(reservationDate);
-  const toTest = date.getDay();
+  const reservationDate = req.body.data.reservation_date;
+  const date = new Date(reservationDate.slice(0, 10));
+  const today = new Date();
+  const testToday = today.getUTCDay();
+  const toTest = date.getUTCDay();
+  console.log(`${date} >>>>>> ${toTest} >>>>> ${today} >>>>> ${testToday}`);
+
   if (toTest === 2) {
     next({
       status: 400,
