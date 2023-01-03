@@ -2,7 +2,7 @@
 
 > Periodic Tables is a restaurant reservation application designed to support staff before and during service. Front-of-House staff can edit, track, and cancel reservations, as well as monitor tables that are available. If needed, new tables can be added at any time. 
 > 
-> Deployed Application: [Periodic Tables](https://periodic-tables-client-two.vercel.app/dashboard)
+> Deployed Application: [Periodic Tables](https://periodic-tables-iwtp.onrender.com/dashboard)
 
 ## Table of Contents
 
